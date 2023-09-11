@@ -1,5 +1,9 @@
-version: 1.0.1
+version: 1.0.2
 history:
+  1.0.2:
+    date: '2023-09-11'
+    title: 'Layout'
+    description: 'Layout improvement.'
   1.0.1:
     date: '2023-09-11'
     title: 'Createor'
