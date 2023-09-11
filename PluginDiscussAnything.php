@@ -98,6 +98,12 @@ class PluginDiscussAnything{
     $discussion = wfDocument::getElementFromFolder(__DIR__, 'discussion');
     $discussion->setByTag($item->get());
     /**
+     * bg color if creator.
+     */
+    if($item->get('created_by')==$created_by){
+      $discussion->set('attribute/class', 'card text-bg-secondary');
+    }
+    /**
      * 
      */
     if($item->get('created_by')!=$created_by && $item->get('editable')){

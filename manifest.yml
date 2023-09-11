@@ -1,5 +1,9 @@
-version: 1.0.0
+version: 1.0.1
 history:
+  1.0.1:
+    date: '2023-09-11'
+    title: 'Createor'
+    description: 'Add bg color secondary if creator.'
   1.0.0:
     date: '2023-09-11'
     title: 'First version'
