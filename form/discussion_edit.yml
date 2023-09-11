@@ -1,0 +1,57 @@
+url: rs:url
+ajax: true
+submit_value: Save
+id: frm_discussion
+items:
+  id:
+    type: hidden
+    label: id
+    default: rs:id
+  tag_place:
+    type: hidden
+    label: tag_place
+    default: rs:tag_place
+  tag_item:
+    type: hidden
+    label: tag_item
+    default: rs:tag_item
+  text:
+    type: text
+    label: Text
+    mandatory: true
+    default: rs:text
+  discuss_anything_id:
+    type: hidden
+    label: discuss_anything_id
+    default: rs:discuss_anything_id
+render:
+  plugin: discuss/anything
+  method: form_render_discussion
+capture:
+  plugin: discuss/anything
+  method: form_capture_discussion
+validation_before:
+  plugin: discuss/anything
+  method: form_validate_discussion
+elements_before:
+  -
+    type: div
+    settings:
+      enabled: rs:id
+    innerHTML:
+      -
+        type: a
+        attribute: 
+          class: btn btn-secondary btn-sm
+          style:
+            float: right
+          data-class: _globals:class
+          data-place: get:tag_place
+          data-item: get:tag_item
+          data-id: get:id
+          onclick: PluginDiscussAnything.deleteDiscussion(this)
+        innerHTML:
+          -
+            type: img
+            attribute:
+              src: '/plugin/icons/octicons/build/svg/trashcan.svg'

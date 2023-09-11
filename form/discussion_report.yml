@@ -1,0 +1,70 @@
+url: rs:url
+ajax: true
+submit_value: Save
+id: frm_discuss_anything_report
+items:
+  discussion_text:
+    type: hidden
+    label: Discussion text
+    default: discussion:text
+  discussion_author:
+    type: hidden
+    label: Discussion author
+    default: discussion:full_name
+  discussion_item_data:
+    type: hidden
+    label: Discussion item data
+    default: discussion:item_data
+  discussion_created_at:
+    type: hidden
+    label: Discussion created at
+    default: discussion:created_at
+  discussion_tag_place:
+    type: hidden
+    label: Discussion place
+    default: discussion:tag_place
+  discussion_tag_item:
+    type: hidden
+    label: Discussion item
+    default: discussion:tag_item
+  discussion_tag_owner:
+    type: hidden
+    label: Discussion owner
+    default: discussion:tag_owner
+  user_name:
+    type: hidden
+    label: User name
+    default: user:username
+  user_id:
+    type: hidden
+    label: User id
+    default: user:user_id
+  user_email:
+    type: hidden
+    label: User email
+    default: user:email
+  type:
+    type: varchar
+    label: Type of report
+    mandatory: true
+    option:
+      '': ''
+      'abuse': 'Spam or some other kind of abuse'
+      'fraud': 'Some kind of fraud or phishing activity'
+      'virus': 'Virus found in the message'
+      'other': 'Other feedback that doesnt fit into other types'
+  message:
+    type: text
+    label: Message
+    mandatory: true
+capture:
+  plugin: 'form/form_v1'
+  method: send
+  data:
+    mailqueue: true
+    mailqueue_tag: discussion_report
+    subject: 'Discussion report'
+    email: mailqueue:email
+    script:
+      - "PluginDiscussAnything.discussionReportCapture()"
+    

@@ -1,0 +1,20 @@
+type: p
+attribute:
+  style: 'text-align:right'
+innerHTML:
+  -
+    type: a
+    attribute:
+      onclick: PluginDiscussAnything.createDiscussion(this)
+      href: '#!'
+      data-class: globals:class
+      data-place: get:tag_place
+      data-item: get:tag_item
+      data-discuss_anything_id: ''
+      class: btn btn-secondary btn-sm
+      title: Add a comment.
+    innerHTML:
+      -
+        type: img
+        attribute:
+          src: '/plugin/icons/octicons/build/svg/comment.svg'

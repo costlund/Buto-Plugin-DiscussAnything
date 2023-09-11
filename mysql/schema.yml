@@ -1,0 +1,78 @@
+tables:
+  discuss_anything:
+    field:
+      id:
+        primary_key: true
+        type: varchar(50)
+        not_null: true
+      account_id:
+        type: varchar(50)
+        not_null: true
+        foreing_key:
+          reference_table: account
+          reference_field: id
+          on_delete: CASCADE
+          on_update: CASCADE        
+      tag_place:
+        type: varchar(50)
+        not_null: true
+      tag_item:
+        type: varchar(50)
+        not_null: true
+      discuss_anything_id:
+        type: varchar(50)
+        foreing_key:
+          reference_table: discuss_anything
+          reference_field: id
+          on_delete: CASCADE
+          on_update: CASCADE
+      text:
+        type: text
+      tag_owner:
+        type: varchar(50)
+        description: 'Using this to restrict access between organisations.'
+
+
+        
+
+  discuss_anything_like:
+    field:
+      id:
+        primary_key: true
+        type: varchar(50)
+        not_null: true
+      discuss_anything_id:
+        type: varchar(50)
+        foreing_key:
+          reference_table: discuss_anything
+          reference_field: id
+          on_delete: CASCADE
+          on_update: CASCADE
+      account_id:
+        type: varchar(50)
+        not_null: true
+        foreing_key:
+          reference_table: account
+          reference_field: id
+          on_delete: CASCADE
+          on_update: CASCADE        
+      value:
+        type: varchar(7)
+        description: 'Like or Dislike'
+extra:
+  _description: Extra field to add to each table if not exist in schema.
+  field:
+    created_at:
+      type: timestamp
+      default: CURRENT_TIMESTAMP
+    updated_at:
+      type: timestamp
+    created_by:
+      type: varchar(50)
+    updated_by:
+      type: varchar(50)
+      
+        
+        
+        
+        

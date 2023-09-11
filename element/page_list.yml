@@ -1,0 +1,8 @@
+-
+  type: script
+  innerHTML: script:script
+-
+  type: div
+  attribute:
+    id: div:id
+  innerHTML: 

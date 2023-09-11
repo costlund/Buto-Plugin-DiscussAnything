@@ -1,0 +1,51 @@
+-
+  type: div
+  attribute:
+    style: 'text-align:center'
+  innerHTML:
+    -
+      type: a
+      attribute:
+        class: btn btn-primary
+        data-like_id: rs:id
+        data-like: 1
+        data-class: _globals:class
+        data-place: get:tag_place
+        data-item: get:tag_item
+        data-id: get:id
+        onclick: "PluginDiscussAnything.setLike(this)"
+      innerHTML:
+        -
+          type: img
+          attribute:
+            id: octicons_thumbs_up
+            src: '/plugin/icons/octicons/build/svg/thumbsup.svg'
+            class: octicons_disabled
+    -
+      type: a
+      attribute:
+        class: btn btn-warning
+        data-like_id: rs:id
+        data-like: 2
+        data-class: _globals:class
+        data-place: get:tag_place
+        data-item: get:tag_item
+        data-id: get:id
+        onclick: "PluginDiscussAnything.setLike(this)"
+      innerHTML:
+        -
+          type: img
+          attribute:
+            id: octicons_thumbs_down
+            src: '/plugin/icons/octicons/build/svg/thumbsdown.svg'
+            class: octicons_disabled
+    -
+      type: script
+      settings:
+        enabled: rs:value_1
+      innerHTML: $('#octicons_thumbs_up').removeClass('octicons_disabled')
+    -
+      type: script
+      settings:
+        enabled: rs:value_2
+      innerHTML: $('#octicons_thumbs_down').removeClass('octicons_disabled')

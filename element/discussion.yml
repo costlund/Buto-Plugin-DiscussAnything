@@ -1,0 +1,151 @@
+type: div
+attribute:
+  class: 'card'
+  style: well:style
+innerHTML:
+  -
+    type: style
+    innerHTML: |
+      .octicons_disabled{opacity: 0.5}
+  -
+    type: div
+    attribute:
+      class: card-body
+    innerHTML:
+      -
+        type: div
+        attribute:
+          class: row
+        innerHTML:
+          -
+            type: div
+            attribute:
+              class: col-md-8
+            innerHTML:
+              -
+                type: a
+                attribute:
+                  class: btn_like:class
+                  title: Like
+                  onclick: PluginDiscussAnything.viewLike(this)
+                  data-class: _globals:class
+                  data-place: rs:tag_place
+                  data-item: rs:tag_item
+                  data-id: rs:id
+                  style: btn_like:style
+                innerHTML:
+                  -
+                    type: img
+                    attribute:
+                      src: btn_like_octicons:src
+                      class: btn_like_octicons:class
+              -
+                type: span
+                attribute:
+                  style: likes:style
+                  class: parantese_around
+                  title: '(Likes/Dislikes)'
+                innerHTML:
+                  -
+                    type: span
+                    innerHTML: rs:likes
+                  -
+                    type: span
+                    innerHTML: /
+                  -
+                    type: span
+                    innerHTML: rs:dislikes
+          -
+            type: div
+            attribute:
+              class: col-md-4
+              style: 'text-align:right'
+            innerHTML:
+              -
+                type: a
+                attribute:
+                  class: btn btn-secondary btn-sm
+                  title: Add a comment.
+                  onclick: PluginDiscussAnything.createDiscussion(this)
+                  data-class: _globals:class
+                  data-place: rs:tag_place
+                  data-item: rs:tag_item
+                  data-discuss_anything_id: rs:id
+                  style: btn_create:style
+                innerHTML:
+                  -
+                    type: img
+                    attribute:
+                      src: '/plugin/icons/octicons/build/svg/comment.svg'
+              -
+                type: a
+                attribute:
+                  class: btn btn-secondary btn-sm
+                  title: Edit
+                  onclick: PluginDiscussAnything.editDiscussion(this)
+                  data-id: rs:id
+                  data-class: _globals:class
+                  data-place: rs:tag_place
+                  data-item: rs:tag_item
+                  style: btn_edit:style
+                innerHTML:
+                  -
+                    type: img
+                    attribute:
+                      src: '/plugin/icons/octicons/build/svg/note.svg'
+              -
+                type: a
+                attribute:
+                  class: btn btn-secondary btn-sm
+                  title: Report this post.
+                  data-class: _globals:class
+                  data-place: rs:tag_place
+                  data-item: rs:tag_item
+                  data-id: rs:id
+                  onclick: "PluginDiscussAnything.reportDiscussion(this)"
+                innerHTML:
+                  -
+                    type: img
+                    attribute:
+                      src: '/plugin/icons/octicons/build/svg/alert.svg'
+      -
+        type: div
+        attribute:
+          class: row
+        innerHTML:
+          -
+            type: div
+            attribute:
+              class: col-md-12
+            innerHTML:
+              -
+                type: p
+                attribute:
+                  style: 'font-size:larger'
+                innerHTML: rs:text
+      -
+        type: div
+        attribute:
+          class: row
+        innerHTML:
+          -
+            type: div
+            attribute:
+              class: col-md-6
+            innerHTML:
+              -
+                type: span
+                attribute:
+                  style: 'font-size:smaller'
+                innerHTML: rs:full_name
+          -
+            type: div
+            attribute:
+              class: col-md-6
+              style: 'text-align:right'
+            innerHTML:
+              -
+                type: span
+                attribute:
+                  style: 'font-size:smaller'
+                innerHTML: rs:created_at

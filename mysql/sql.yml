@@ -1,0 +1,176 @@
+discussion_list:
+  sql: |
+    select
+    d.id,
+    d.created_at,
+    ('_username_') as full_name,
+    d.text,
+    d.discuss_anything_id,
+    d.created_by,
+    (select value from discuss_anything_like where discuss_anything_id=d.id and account_id='[user_id]' limit 1) as like_value,
+    (select count(id) from discuss_anything_like where discuss_anything_id=d.id and value=1) as likes,
+    (select count(id) from discuss_anything_like where discuss_anything_id=d.id and value=2) as dislikes,
+    if(time_to_sec(TIMEDIFF(now(), d.created_at))>600, false, true) as editable,
+    d.tag_place,
+    d.tag_item,
+    d.tag_owner
+    from discuss_anything as d
+    where d.tag_place=? and d.tag_item=? and d.tag_owner=?
+    order by d.created_at asc;
+  select:
+    - id
+    - created_at
+    - full_name
+    - text
+    - discuss_anything_id
+    - created_by
+    - like_value
+    - likes
+    - dislikes
+    - editable
+    - tag_place
+    - tag_item
+    - tag_owner
+  params:
+    -
+      type: s
+      value: get:tag_place
+    -
+      type: s
+      value: get:tag_item
+    -
+      type: s
+      value: get:tag_owner
+discussion_one:
+  sql: |
+    select
+    d.id,
+    d.text,
+    if(time_to_sec(TIMEDIFF(now(), d.created_at))>600, false, true) as editable,
+    ('_username_') as full_name,
+    ('_item_data_') as item_data,
+    d.created_at,
+    d.tag_place,
+    d.tag_item,
+    d.tag_owner
+    ,d.discuss_anything_id
+    from discuss_anything as d
+    inner join account on d.account_id=account.id
+    where d.tag_place=? and d.tag_item=? and d.tag_owner=? and d.id=?
+  select:
+    - id
+    - text
+    - editable
+    - full_name
+    - item_data
+    - created_at
+    - tag_place
+    - tag_item
+    - tag_owner
+    - discuss_anything_id
+  params:
+    -
+      type: s
+      value: get:tag_place
+    -
+      type: s
+      value: get:tag_item
+    -
+      type: s
+      value: get:tag_owner
+    -
+      type: s
+      value: get:id
+discussion_update:
+  sql: |
+    update discuss_anything set text=? where id=?
+  params:
+    -
+      type: s
+      value: get:text
+    -
+      type: s
+      value: get:id
+discussion_create:
+  sql: |
+    insert into discuss_anything (id, tag_place, tag_item, account_id, discuss_anything_id, created_by, tag_owner) values (?, ?, ?, '[user_id]', ?, '[user_id]', ?);
+  params:
+    -
+      type: s
+      value: get:id
+    -
+      type: s
+      value: get:tag_place
+    -
+      type: s
+      value: get:tag_item
+    -
+      type: s
+      value: get:discuss_anything_id
+    -
+      type: s
+      value: get:tag_owner
+discussion_delete:
+  sql: |
+    delete from discuss_anything where id=?
+  params:
+    -
+      type: s
+      value: get:id
+like_get:
+  sql: |
+    select
+    id,
+    value,
+    if(value=1, 1, 0) as value_1,
+    if(value=2, 1, 0) as value_2
+    from discuss_anything_like
+    where discuss_anything_id=? and account_id='[user_id]'
+  select:
+    - id
+    - value
+    - value_1
+    - value_2
+  params:
+    -
+      type: s
+      value: get:id
+like_update:
+  sql: |
+    update discuss_anything_like
+    set value=?
+    where id=? and discuss_anything_id=? and account_id='[user_id]'
+  params:
+    -
+      type: i
+      value: get:like_value
+    -
+      type: s
+      value: get:like_id
+    -
+      type: s
+      value: get:id
+like_delete:
+  sql: |
+    delete from discuss_anything_like
+    where id=? and discuss_anything_id=? and account_id='[user_id]'
+  params:
+    -
+      type: s
+      value: get:like_id
+    -
+      type: s
+      value: get:id
+like_insert:
+  sql: |
+    insert into discuss_anything_like (id, discuss_anything_id, account_id, value) values (?, ?, '[user_id]', ?);
+  params:
+    -
+      type: s
+      value: get:like_id
+    -
+      type: s
+      value: get:id
+    -
+      type: i
+      value: get:like_value
