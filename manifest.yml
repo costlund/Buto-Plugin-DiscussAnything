@@ -1,5 +1,9 @@
-version: 1.0.2
+version: 1.0.3
 history:
+  1.0.3:
+    date: '2023-09-13'
+    title: 'I18N'
+    description: 'I18N improvement.'
   1.0.2:
     date: '2023-09-11'
     title: 'Layout'

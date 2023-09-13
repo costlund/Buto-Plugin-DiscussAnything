@@ -2,6 +2,13 @@ url: rs:url
 ajax: true
 submit_value: Save
 id: frm_discuss_anything_report
+i18n:
+  path: /plugin/discuss/anything/i18n
+settings:
+  globals:
+    -
+      path_to_key: 'settings/plugin/i18n/translate_v1/settings/path'
+      value: '/plugin/discuss/anything/i18n'
 items:
   discussion_text:
     type: hidden
