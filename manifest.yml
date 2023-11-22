@@ -1,5 +1,9 @@
-version: 1.0.3
+version: 1.1.0
 history:
+  1.1.0:
+    date: '2023-11-22'
+    title: 'Level three'
+    description: 'One could add comment on level three but it will not create a next level.'
   1.0.3:
     date: '2023-09-13'
     title: 'I18N'

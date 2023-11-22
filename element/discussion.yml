@@ -57,7 +57,7 @@ innerHTML:
               data-class: _globals:class
               data-place: rs:tag_place
               data-item: rs:tag_item
-              data-discuss_anything_id: rs:id
+              data-discuss_anything_id: rs:create_discuss_anything_id
               style: btn_create:style
             innerHTML:
               -

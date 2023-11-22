@@ -61,7 +61,7 @@ class PluginDiscussAnything{
             if($item2->get('level_3')){
               foreach ($item2->get('level_3') as $key3 => $value3) {
                 $item3 = new PluginWfArray($value3);
-                $element[] = $this->getDiscussion($item3, $created_by, 3);
+                $element[] = $this->getDiscussion($item3, $created_by, 3, false, $item2);
               }
             }
           }
@@ -93,9 +93,19 @@ class PluginDiscussAnything{
       return $str;
     }
   }
-  private function getDiscussion($item, $created_by, $level = 1, $answer_disable = false){
+  private function getDiscussion($item, $created_by, $level = 1, $answer_disable = false, $item_above = null){
     $item->set('text', $this->formatText($item->get('text')));
     $discussion = wfDocument::getElementFromFolder(__DIR__, 'discussion');
+    /**
+     * create_discuss_anything_id
+     */
+    $item->set('create_discuss_anything_id', $item->get('id'));
+    if($level==3){
+      $item->set('create_discuss_anything_id', $item_above->get('id'));
+    }
+    /**
+     * 
+     */
     $discussion->setByTag($item->get());
     /**
      * bg color if creator.
@@ -136,7 +146,7 @@ class PluginDiscussAnything{
     /**
      * Button create.
      */
-    if($level==3 || $answer_disable){
+    if($answer_disable){
       $btn_create_style = 'display:none;';
     }else{
       $btn_create_style = 'display:;';
