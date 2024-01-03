@@ -146,7 +146,7 @@ class PluginDiscussAnything{
     /**
      * Button create.
      */
-    if($answer_disable){
+    if($answer_disable || $item->get('editable')){
       $btn_create_style = 'display:none;';
     }else{
       $btn_create_style = 'display:;';
@@ -224,11 +224,6 @@ class PluginDiscussAnything{
     $sql->setByTag($this->settings->get());
     $this->mysql->execute($sql->get());
     $rs = $this->mysql->getMany();
-    if(wfUser::hasRole('webmaster')){
-      foreach($rs as $k => $v){
-        $rs[$k]['editable'] = true;
-      }
-    }
     return $rs;
   }
   private function db_discussion_one(){
@@ -247,9 +242,6 @@ class PluginDiscussAnything{
     $sql->setByTag($this->settings->get());
     $this->mysql->execute($sql->get());
     $rs = $this->mysql->getOne();
-    if(wfUser::hasRole('webmaster')){
-      $rs->set('editable', true);
-    }
     return $rs;
   }
   private function db_discussion_update($id){

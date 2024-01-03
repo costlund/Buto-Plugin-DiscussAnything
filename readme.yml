@@ -101,3 +101,11 @@ readme:
               id: discussion_test
             innerHTML: 'load:/discuss_anything/list?tag_place=discussion_test&tag_item=x'
             ```
+        -
+          name: Editable
+          description: |
+            One could only edit post if within five minutes.
+        -
+          name: Answer
+          description: |
+            One could only answer other post if not editable.

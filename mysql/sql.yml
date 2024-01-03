@@ -10,7 +10,7 @@ discussion_list:
     (select value from discuss_anything_like where discuss_anything_id=d.id and account_id='[user_id]' limit 1) as like_value,
     (select count(id) from discuss_anything_like where discuss_anything_id=d.id and value=1) as likes,
     (select count(id) from discuss_anything_like where discuss_anything_id=d.id and value=2) as dislikes,
-    if(time_to_sec(TIMEDIFF(now(), d.created_at))>600, false, true) as editable,
+    if(time_to_sec(TIMEDIFF(now(), d.created_at))>300, false, true) as editable,
     d.tag_place,
     d.tag_item,
     d.tag_owner
@@ -46,7 +46,7 @@ discussion_one:
     select
     d.id,
     d.text,
-    if(time_to_sec(TIMEDIFF(now(), d.created_at))>600, false, true) as editable,
+    if(time_to_sec(TIMEDIFF(now(), d.created_at))>300, false, true) as editable,
     ('_username_') as full_name,
     ('_item_data_') as item_data,
     d.created_at,
