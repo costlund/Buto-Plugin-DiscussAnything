@@ -108,3 +108,15 @@ attribute:
   id: discussion_test
 innerHTML: 'load:/discuss_anything/list?tag_place=discussion_test&amp;tag_item=x'</code></pre>
 
+<a name="key_2_3"></a>
+
+### Editable
+
+<p>One could only edit post if within five minutes.</p>
+
+<a name="key_2_4"></a>
+
+### Answer
+
+<p>One could only answer other post if not editable.</p>
+
