@@ -153,6 +153,15 @@ class PluginDiscussAnything{
     }
     $discussion->setByTag(array('style' => $btn_create_style), 'btn_create');
     /**
+     * btn_create_warning
+     */
+    if($answer_disable || $item->get('editable')){
+      $btn_create_warning_style = 'display:;margin:4px';
+    }else{
+      $btn_create_warning_style = 'display:none;';
+    }
+    $discussion->setByTag(array('style' => $btn_create_warning_style, 'title' => $this->i18n->translateFromTheme('Wait five minutes until one could reply!')), 'btn_create_warning');
+    /**
      * Button Like.
      */
     $btn_like_octicons = new PluginWfArray();

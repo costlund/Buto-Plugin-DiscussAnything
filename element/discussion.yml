@@ -96,6 +96,14 @@ innerHTML:
                 type: img
                 attribute:
                   src: '/plugin/icons/octicons/build/svg/alert.svg'
+          -
+            type: span
+            attribute:
+              class: badge bg-warning
+              style: btn_create_warning:style
+              title: btn_create_warning:title
+              onclick: alert(this.getAttribute('title'))
+            innerHTML: 5 min...
       -
         type: div
         attribute:
