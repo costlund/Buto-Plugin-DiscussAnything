@@ -95,6 +95,16 @@ class PluginDiscussAnything{
   }
   private function getDiscussion($item, $created_by, $level = 1, $answer_disable = false, $item_above = null){
     $item->set('text', $this->formatText($item->get('text')));
+    /**
+     * If editable and not author.
+     */
+    if($item->get('created_by')!=$created_by && $item->get('editable')){
+      $discussion = wfDocument::getElementFromFolder(__DIR__, 'discussion_none');
+      return $discussion->get();
+    }
+    /**
+     * 
+     */
     $discussion = wfDocument::getElementFromFolder(__DIR__, 'discussion');
     /**
      * create_discuss_anything_id

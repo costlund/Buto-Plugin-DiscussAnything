@@ -49,6 +49,7 @@ elements_before:
           data-place: get:tag_place
           data-item: get:tag_item
           data-id: get:id
+          title: 'Are you sure?'
           onclick: PluginDiscussAnything.deleteDiscussion(this)
         innerHTML:
           -

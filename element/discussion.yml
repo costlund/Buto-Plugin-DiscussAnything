@@ -103,7 +103,7 @@ innerHTML:
               style: btn_create_warning:style
               title: btn_create_warning:title
               onclick: alert(this.getAttribute('title'))
-            innerHTML: 5 min...
+            innerHTML: 5 minutes
       -
         type: div
         attribute:
