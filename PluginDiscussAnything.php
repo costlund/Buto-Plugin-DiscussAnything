@@ -94,6 +94,16 @@ class PluginDiscussAnything{
     }
   }
   private function getDiscussion($item, $created_by, $level = 1, $answer_disable = false, $item_above = null){
+    /**
+     * i18n
+     */
+    $i18n = array('minutes' => 'minutes');
+    foreach($i18n as $k => $v){
+      $i18n[$k] = $this->i18n->translateFromTheme($v);
+    }
+    /**
+     * 
+     */
     $item->set('text', $this->formatText($item->get('text')));
     /**
      * If editable and not author.
@@ -106,6 +116,7 @@ class PluginDiscussAnything{
      * 
      */
     $discussion = wfDocument::getElementFromFolder(__DIR__, 'discussion');
+    $discussion->setByTag($i18n, 'i18n');
     /**
      * create_discuss_anything_id
      */

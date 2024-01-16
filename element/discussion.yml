@@ -102,8 +102,16 @@ innerHTML:
               class: badge bg-warning
               style: btn_create_warning:style
               title: btn_create_warning:title
-              onclick: alert(this.getAttribute('title'))
-            innerHTML: 5 minutes
+              onclick: "PluginWfBootstrapjs.alert(this.getAttribute('title'))"
+            innerHTML: 
+              -
+                type: span
+                attribute:
+                  class: me-1
+                innerHTML: 5
+              -
+                type: span
+                innerHTML: i18n:minutes
       -
         type: div
         attribute:
