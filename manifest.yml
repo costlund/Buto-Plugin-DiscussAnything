@@ -1,5 +1,9 @@
-version: 1.1.6
+version: 1.1.7
 history:
+  1.1.7:
+    date: '2024-01-31'
+    title: 'Anchor'
+    description: 'Add anchor. Sort newest to oldes in level one. The rest oldest to newest.'
   1.1.6:
     date: '2024-01-17'
     title: 'Confirm delete'

@@ -16,7 +16,7 @@ discussion_list:
     d.tag_owner
     from discuss_anything as d
     where d.tag_place=? and d.tag_item=? and d.tag_owner=?
-    order by d.created_at desc;
+    order by d.created_at asc;
   select:
     - id
     - created_at

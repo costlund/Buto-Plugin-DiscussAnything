@@ -1,5 +1,9 @@
 readme:
   name: Buto-Plugin-DiscussAnything
+  description: |
+    - Sort newest to oldes in level one. 
+    - The rest oldest to newest.
+    - Anchor to scroll to latest edited item.
   item:
     -
       name: Settings

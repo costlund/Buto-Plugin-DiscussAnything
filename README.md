@@ -1,6 +1,10 @@
 # Buto-Plugin-DiscussAnything
 
-
+<ul>
+<li>Sort newest to oldes in level one. </li>
+<li>The rest oldest to newest.</li>
+<li>Anchor to scroll to latest edited item.</li>
+</ul>
 
 <a name="key_0"></a>
 

@@ -4,6 +4,11 @@ attribute:
   style: well:style
 innerHTML:
   -
+    type: a
+    attribute: 
+      name: rs:id
+      id: rs:id
+  -
     type: style
     innerHTML: |
       .octicons_disabled{opacity: 0.5}

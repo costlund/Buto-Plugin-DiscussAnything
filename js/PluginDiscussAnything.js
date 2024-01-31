@@ -1,8 +1,12 @@
 function PluginDiscussAnything(){
+  this.data = {item: {}};
   this.list = function(data){
     $.getJSON( "/"+data.class+"/list_data?tag_place="+data.place+"&tag_item="+data.item+"", function( json ) {
       document.getElementById('discussion_'+data.place).innerHTML = '';
       PluginWfDom.render(json, 'discussion_'+data.place);
+      if(PluginDiscussAnything.data.item.id){
+        location.href='#'+PluginDiscussAnything.data.item.id;
+      }
      });    
   }
   this.editDiscussion = function(btn){
@@ -13,6 +17,7 @@ function PluginDiscussAnything(){
     }
   }
   this.updateDiscussion = function(data){
+    this.data.item = data;
     PluginMemb_incMain.closeModal('modal_discuss_anything_edit_discussion');
     PluginDiscussAnything.list({class: data.class, place: data.tag_place, item: data.tag_item});
   }

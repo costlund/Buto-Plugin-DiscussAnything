@@ -95,6 +95,10 @@ class PluginDiscussAnything{
   }
   private function getDiscussion($item, $created_by, $level = 1, $answer_disable = false, $item_above = null){
     /**
+     * anchor
+     */
+    $item->set('anchor', '#'.$item->get('id'));
+    /**
      * i18n
      */
     $i18n = array('minutes' => 'minutes');
