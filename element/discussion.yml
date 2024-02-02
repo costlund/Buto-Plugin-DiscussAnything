@@ -1,6 +1,6 @@
 type: div
 attribute:
-  class: 'card'
+  class: card:class
   style: well:style
 innerHTML:
   -
