@@ -5,7 +5,15 @@ function PluginDiscussAnything(){
       document.getElementById('discussion_'+data.place).innerHTML = '';
       PluginWfDom.render(json, 'discussion_'+data.place);
       if(PluginDiscussAnything.data.item.id){
-        location.href='#'+PluginDiscussAnything.data.item.id;
+        /**
+         * 
+         */
+        if(data.discuss_anything_id){
+          /**
+           * Update if new post level one.
+           */
+          location.href='#'+PluginDiscussAnything.data.item.id;
+        }
       }
      });    
   }
@@ -19,7 +27,7 @@ function PluginDiscussAnything(){
   this.updateDiscussion = function(data){
     this.data.item = data;
     PluginMemb_incMain.closeModal('modal_discuss_anything_edit_discussion');
-    PluginDiscussAnything.list({class: data.class, place: data.tag_place, item: data.tag_item});
+    PluginDiscussAnything.list({class: data.class, place: data.tag_place, item: data.tag_item, discuss_anything_id: data.discuss_anything_id});
   }
   this.createDiscussion = function(btn){
     PluginWfBootstrapjs.modal({id: 'modal_discuss_anything_edit_discussion', url: '/'+btn.getAttribute('data-class')+'/discussion_edit/tag_place/'+btn.getAttribute('data-place')+'/tag_item/'+btn.getAttribute('data-item')+'?discuss_anything_id='+btn.getAttribute('data-discuss_anything_id'), lable: btn.innerHTML});

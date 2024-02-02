@@ -43,8 +43,6 @@ elements_before:
         type: a
         attribute: 
           class: btn btn-secondary btn-sm
-          style:
-            float: right
           data-class: _globals:class
           data-place: get:tag_place
           data-item: get:tag_item
