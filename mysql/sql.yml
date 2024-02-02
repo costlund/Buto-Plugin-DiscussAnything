@@ -14,6 +14,14 @@ discussion_list:
     d.tag_place,
     d.tag_item,
     d.tag_owner
+    ,(
+      if(
+      timestampdiff(minute, d.created_at, now())<=60, concat(timestampdiff(minute, d.created_at, now()), ' m')
+      ,if(hour(timediff(d.created_at, now()))<=24
+      ,concat(hour(timediff(d.created_at ,now())), ' h')
+      ,concat(timestampdiff(day, d.created_at, now()), ' d')
+      ))
+    ) as created_at_diff
     from discuss_anything as d
     where d.tag_place=? and d.tag_item=? and d.tag_owner=?
     order by d.created_at asc;
@@ -31,6 +39,7 @@ discussion_list:
     - tag_place
     - tag_item
     - tag_owner
+    - created_at_diff
   params:
     -
       type: s

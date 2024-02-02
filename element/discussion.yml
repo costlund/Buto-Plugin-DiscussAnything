@@ -68,8 +68,25 @@ innerHTML:
             type: span
             attribute:
               style: 'font-size:smaller;float:right'
-              class: badge bg-light
-            innerHTML: rs:created_at
+              class: badge bg-light m-1
+              title: rs:created_at
+            innerHTML: rs:created_at_diff
+          -
+            type: a
+            attribute:
+              class: btn btn-warning btn-sm
+              title: Edit
+              onclick: PluginDiscussAnything.editDiscussion(this)
+              data-id: rs:id
+              data-class: _globals:class
+              data-place: rs:tag_place
+              data-item: rs:tag_item
+              style: btn_edit:style
+            innerHTML:
+              -
+                type: img
+                attribute:
+                  src: '/plugin/icons/octicons/build/svg/note.svg'
           -
             type: a
             attribute:
@@ -119,35 +136,3 @@ innerHTML:
                 attribute:
                   src: btn_like_octicons:src
                   class: btn_like_octicons:class
-          -
-            type: a
-            attribute:
-              class: btn btn-light btn-sm
-              title: Edit
-              onclick: PluginDiscussAnything.editDiscussion(this)
-              data-id: rs:id
-              data-class: _globals:class
-              data-place: rs:tag_place
-              data-item: rs:tag_item
-              style: btn_edit:style
-            innerHTML:
-              -
-                type: img
-                attribute:
-                  src: '/plugin/icons/octicons/build/svg/note.svg'
-          -
-            type: span
-            attribute:
-              class: badge bg-warning
-              style: btn_create_warning:style
-              title: btn_create_warning:title
-              onclick: "PluginWfBootstrapjs.alert(this.getAttribute('title'))"
-            innerHTML: 
-              -
-                type: span
-                attribute:
-                  class: me-1
-                innerHTML: 5
-              -
-                type: span
-                innerHTML: i18n:minutes

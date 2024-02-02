@@ -1,6 +1,7 @@
-type: p
+type: div
 attribute:
   style: 'text-align:right'
+  class: m-1
 innerHTML:
   -
     type: a
@@ -11,10 +12,5 @@ innerHTML:
       data-place: get:tag_place
       data-item: get:tag_item
       data-discuss_anything_id: ''
-      class: btn btn-secondary btn-sm
       title: Add a comment.
-    innerHTML:
-      -
-        type: img
-        attribute:
-          src: '/plugin/icons/octicons/build/svg/comment.svg'
+    innerHTML: Comment
