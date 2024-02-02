@@ -1,90 +1,53 @@
 type: div
-attribute:
-  class: card:class
-  style: well:style
 innerHTML:
-  -
-    type: a
-    attribute: 
-      name: rs:id
-      id: rs:id
-  -
-    type: style
-    innerHTML: |
-      .octicons_disabled{opacity: 0.5}
   -
     type: div
     attribute:
-      class: card-body
+      class: card:class
+      style: well:style
     innerHTML:
+      -
+        type: a
+        attribute: 
+          name: rs:id
+          id: rs:id
+      -
+        type: style
+        innerHTML: |
+          .octicons_disabled{opacity: 0.5}
+      -
+        type: div
+        attribute:
+          class: card-body
+        innerHTML:
+          -
+            type: div
+            innerHTML:
+              -
+                type: strong
+                attribute:
+                  style: 'font-size:smaller'
+                innerHTML: rs:full_name
+          -
+            type: div
+            attribute:
+              class: row
+            innerHTML:
+              -
+                type: div
+                attribute:
+                  class: col-md-12
+                innerHTML: rs:text
+  -
+    type: div
+    attribute:
+      style: well:style
+      class: mb-3 px-3
+    innerHTML:
+
       -
         type: div
         innerHTML:
-          -
-            type: a
-            attribute:
-              class: btn_like:class
-              title: Like
-              onclick: PluginDiscussAnything.viewLike(this)
-              data-class: _globals:class
-              data-place: rs:tag_place
-              data-item: rs:tag_item
-              data-id: rs:id
-              style: btn_like:style
-            innerHTML:
-              -
-                type: img
-                attribute:
-                  src: btn_like_octicons:src
-                  class: btn_like_octicons:class
-          -
-            type: span
-            attribute:
-              style: likes:style
-              class: parantese_around
-              title: '(Likes/Dislikes)'
-            innerHTML:
-              -
-                type: span
-                innerHTML: rs:likes
-              -
-                type: span
-                innerHTML: /
-              -
-                type: span
-                innerHTML: rs:dislikes
-          -
-            type: a
-            attribute:
-              class: btn btn-secondary btn-sm
-              title: Add a comment.
-              onclick: PluginDiscussAnything.createDiscussion(this)
-              data-class: _globals:class
-              data-place: rs:tag_place
-              data-item: rs:tag_item
-              data-discuss_anything_id: rs:create_discuss_anything_id
-              style: btn_create:style
-            innerHTML:
-              -
-                type: img
-                attribute:
-                  src: '/plugin/icons/octicons/build/svg/comment.svg'
-          -
-            type: a
-            attribute:
-              class: btn btn-light btn-sm
-              title: Edit
-              onclick: PluginDiscussAnything.editDiscussion(this)
-              data-id: rs:id
-              data-class: _globals:class
-              data-place: rs:tag_place
-              data-item: rs:tag_item
-              style: btn_edit:style
-            innerHTML:
-              -
-                type: img
-                attribute:
-                  src: '/plugin/icons/octicons/build/svg/note.svg'
           -
             type: a
             attribute:
@@ -104,6 +67,77 @@ innerHTML:
           -
             type: span
             attribute:
+              style: 'font-size:smaller;float:right'
+              class: badge bg-light
+            innerHTML: rs:created_at
+          -
+            type: a
+            attribute:
+              class: btn btn-secondary btn-sm
+              title: Add a comment.
+              onclick: PluginDiscussAnything.createDiscussion(this)
+              data-class: _globals:class
+              data-place: rs:tag_place
+              data-item: rs:tag_item
+              data-discuss_anything_id: rs:create_discuss_anything_id
+              style: btn_create:style
+            innerHTML:
+              -
+                type: img
+                attribute:
+                  src: '/plugin/icons/octicons/build/svg/comment.svg'
+          -
+            type: span
+            attribute:
+              style: likes:style
+              class: parantese_around badge bg-light m-1
+              title: '(Likes/Dislikes)'
+            innerHTML:
+              -
+                type: span
+                innerHTML: rs:likes
+              -
+                type: span
+                innerHTML: /
+              -
+                type: span
+                innerHTML: rs:dislikes
+          -
+            type: a
+            attribute:
+              class: btn_like:class
+              title: Like
+              onclick: PluginDiscussAnything.viewLike(this)
+              data-class: _globals:class
+              data-place: rs:tag_place
+              data-item: rs:tag_item
+              data-id: rs:id
+              style: btn_like:style
+            innerHTML:
+              -
+                type: img
+                attribute:
+                  src: btn_like_octicons:src
+                  class: btn_like_octicons:class
+          -
+            type: a
+            attribute:
+              class: btn btn-light btn-sm
+              title: Edit
+              onclick: PluginDiscussAnything.editDiscussion(this)
+              data-id: rs:id
+              data-class: _globals:class
+              data-place: rs:tag_place
+              data-item: rs:tag_item
+              style: btn_edit:style
+            innerHTML:
+              -
+                type: img
+                attribute:
+                  src: '/plugin/icons/octicons/build/svg/note.svg'
+          -
+            type: span
+            attribute:
               class: badge bg-warning
               style: btn_create_warning:style
               title: btn_create_warning:title
@@ -117,31 +151,3 @@ innerHTML:
               -
                 type: span
                 innerHTML: i18n:minutes
-      -
-        type: div
-        attribute:
-          class: row
-        innerHTML:
-          -
-            type: div
-            attribute:
-              class: col-md-12
-            innerHTML:
-              -
-                type: p
-                attribute:
-                  style: 'font-size:larger'
-                innerHTML: rs:text
-      -
-        type: div
-        innerHTML:
-          -
-            type: span
-            attribute:
-              style: 'font-size:smaller'
-            innerHTML: rs:full_name
-          -
-            type: span
-            attribute:
-              style: 'font-size:smaller;float:right'
-            innerHTML: rs:created_at

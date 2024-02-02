@@ -136,9 +136,9 @@ class PluginDiscussAnything{
      * bg color if creator.
      */
     $card_class = new PluginWfArray();
-    $card_class->set('class', 'card');
+    $card_class->set('class', 'card mb-1');
     if($item->get('created_by')==$created_by){
-      $card_class->set('class', 'card text-bg-secondary');
+      $card_class->set('class', 'card mb-1 text-bg-secondary');
     }
     $discussion->setByTag($card_class->get(), 'card');
     /**
