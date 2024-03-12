@@ -253,6 +253,11 @@ class PluginDiscussAnything{
     $sql->setByTag($this->settings->get());
     $this->mysql->execute($sql->get());
     $rs = $this->mysql->getMany();
+    foreach($rs as $k => $v){
+      if(!$v['full_name']){
+        $rs[$k]['full_name'] = '(ej kvar)';
+      }
+    }
     return $rs;
   }
   private function db_discussion_one(){
