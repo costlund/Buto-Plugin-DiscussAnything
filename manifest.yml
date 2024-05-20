@@ -1,5 +1,9 @@
-version: 1.2.0
+version: 1.2.1
 history:
+  1.2.1:
+    date: '2024-05-20'
+    title: 'I18N'
+    description: 'Translations.'
   1.2.0:
     date: '2024-03-11'
     title: 'Full name'

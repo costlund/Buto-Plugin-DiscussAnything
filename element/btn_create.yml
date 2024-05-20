@@ -12,5 +12,5 @@ innerHTML:
       data-place: get:tag_place
       data-item: get:tag_item
       data-discuss_anything_id: ''
-      title: Add a comment.
-    innerHTML: Comment
+      title: i18n:Add a comment.
+    innerHTML: i18n:Comment

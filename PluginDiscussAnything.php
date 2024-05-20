@@ -47,6 +47,16 @@ class PluginDiscussAnything{
     $answer_disable = false;
     $element = array();
     $btn_create = wfDocument::getElementFromFolder(__DIR__, 'btn_create');
+    /**
+     * i18n
+     */
+    $btn_create->setByTag(array(
+      'Add a comment.' => $this->i18n->translateFromTheme('Add a comment.')
+      ,'Comment' => $this->i18n->translateFromTheme('Comment')
+    ), 'i18n');
+    /**
+     * 
+     */
     $btn_create->setByTag(wfGlobals::get(), 'globals');
     $btn_create->setByTag(wfRequest::getAll(), 'get');
     $element[] = $btn_create->get();
