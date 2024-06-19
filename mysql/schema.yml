@@ -31,10 +31,6 @@ tables:
       tag_owner:
         type: varchar(50)
         description: 'Using this to restrict access between organisations.'
-
-
-        
-
   discuss_anything_like:
     field:
       id:
@@ -59,6 +55,24 @@ tables:
       value:
         type: varchar(7)
         description: 'Like or Dislike'
+  discuss_anything_state:
+    field:
+      id:
+        primary_key: true
+        type: varchar(50)
+        not_null: true
+      tag_place:
+        type: varchar(50)
+        not_null: true
+      tag_item:
+        type: varchar(50)
+        not_null: true
+      tag_owner:
+        type: varchar(50)
+        not_null: true
+      state:
+        type: varchar(20)
+        description: 'Active. Archived (content is only visible). Removed (content is not visible).'
 extra:
   _description: Extra field to add to each table if not exist in schema.
   field:

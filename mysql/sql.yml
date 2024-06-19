@@ -183,3 +183,69 @@ like_insert:
     -
       type: i
       value: get:like_value
+discussion_state_one:
+  sql: |
+    select
+    s.id
+    ,s.tag_owner
+    ,s.tag_place
+    ,s.tag_item
+    ,s.state
+    ,if(s.state='Active', 1, 0) as state_active
+    ,if(s.state='Archived', 1, 0) as state_archived
+    ,if(s.state='Removed', 1, 0) as state_removed
+    from discuss_anything_state as s
+    where s.tag_place=? and s.tag_item=? and s.tag_owner=?
+  select:
+    - id
+    - tag_owner
+    - tag_place
+    - tag_item
+    - state
+    - state_active
+    - state_archived
+    - state_removed
+  params:
+    -
+      type: s
+      value: rs:tag_place
+    -
+      type: s
+      value: rs:tag_item
+    -
+      type: s
+      value: rs:tag_owner
+discussion_state_insert:
+  sql: |
+    insert into discuss_anything_state (id, state, tag_place, tag_item, tag_owner)
+    values (uuid(), ?, ?, ?, ?)
+  params:
+    -
+      type: s
+      value: rs:state
+    -
+      type: s
+      value: rs:tag_place
+    -
+      type: s
+      value: rs:tag_item
+    -
+      type: s
+      value: rs:tag_owner
+discussion_state_set:
+  sql: |
+    update discuss_anything_state set state=?
+    where tag_place=? and tag_item=? and tag_owner=?
+  params:
+    -
+      type: s
+      value: rs:state
+    -
+      type: s
+      value: rs:tag_place
+    -
+      type: s
+      value: rs:tag_item
+    -
+      type: s
+      value: rs:tag_owner

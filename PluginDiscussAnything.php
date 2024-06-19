@@ -5,6 +5,7 @@ class PluginDiscussAnything{
   private $mysql;
   private $i18n = null;
   private $tag_place;
+  private $state = null;
   function __construct() {
     $this->settings = wfPlugin::getModuleSettings('discuss/anything', true);
     $this->plugin = wfPlugin::getPluginSettings('discuss/anything', true);
@@ -33,15 +34,30 @@ class PluginDiscussAnything{
     wfPlugin::includeonce('i18n/translate_v1');
     $this->i18n = new PluginI18nTranslate_v1();
     $this->i18n->path = '/plugin/discuss/anything/i18n';
+    /**
+     * 
+     */
+    wfPlugin::includeonce('wf/yml');
+    $this->state = $this->db_discussion_state_one(wfRequest::getAll());
   }
   public function page_list(){
     $script = "PluginDiscussAnything.list({class: '".wfGlobals::get('class')."', place: '".wfRequest::get('tag_place')."', item: '".wfRequest::get('tag_item')."'})";
     $element = wfDocument::getElementFromFolder(__DIR__, __FUNCTION__);
     $element->setByTag(array('script' => $script), 'script');
+    $element->setByTag($this->state->get(), 'state');
     $element->setByTag(array('id' => 'discussion_'.wfRequest::get('tag_place')), 'div');
     wfDocument::renderElement($element);
   }
   public function page_list_data(){
+    /**
+     * 
+     */
+    if($this->state->get('state_removed')){
+      exit(json_encode(array()));
+    }
+    /**
+     * 
+     */
     $tree = $this->discussion_list_tree();
     $created_by = $this->getCreatedBy();
     $answer_disable = false;
@@ -59,7 +75,9 @@ class PluginDiscussAnything{
      */
     $btn_create->setByTag(wfGlobals::get(), 'globals');
     $btn_create->setByTag(wfRequest::getAll(), 'get');
-    $element[] = $btn_create->get();
+    if($this->state->get('state_active')){
+      $element[] = $btn_create->get();
+    }
     if($tree->get('level_1')){
       foreach ($tree->get('level_1') as $key => $value) {
         $item = new PluginWfArray($value);
@@ -175,17 +193,17 @@ class PluginDiscussAnything{
     /**
      * Button edit.
      */
-    if($item->get('created_by')==$created_by && $item->get('editable')){
-      $btn_edit_style = 'display:;';
+    if($item->get('created_by')==$created_by && $item->get('editable') && $this->state->get('state_active')){
+      $btn_edit_style = 'visibility:visible;';
     }else{
-      $btn_edit_style = 'display:none;';
+      $btn_edit_style = 'visibility:hidden;';
     }
     $discussion->setByTag(array('style' => $btn_edit_style), 'btn_edit');
     $discussion->setByTag(wfGlobals::get(), '_globals');
     /**
      * Button create.
      */
-    if($answer_disable || $item->get('editable')){
+    if($answer_disable || $item->get('editable') || !$this->state->get('state_active')){
       $btn_create_style = 'display:none;';
     }else{
       $btn_create_style = 'display:;';
@@ -197,7 +215,10 @@ class PluginDiscussAnything{
     $btn_like_octicons = new PluginWfArray();
     $btn_like_octicons->set('src', '/plugin/icons/octicons/build/svg/thumbsup.svg');
     $btn_like_octicons->set('class', 'octicons_disabled');
-    if($level==1){
+    if(!$this->state->get('state_active')){
+      $btn_like_style = 'display:none;';
+      $btn_like_class = '';
+    }else if($level==1){
       $btn_like_style = 'display:;';
       $btn_like_class = 'btn btn-secondary btn-sm';
       /**
@@ -325,6 +346,49 @@ class PluginDiscussAnything{
     wfRequest::set('like_id', wfCrypt::getUid());
     $sql = $this->sql('like_insert');
     $this->mysql->execute($sql->get());
+    return null;
+  }
+  private function db_discussion_state_one($data){
+    $sql = $this->sql('discussion_state_one');
+    $sql->setByTag($data);
+    $this->mysql->execute($sql->get());
+    $rs = $this->mysql->getOne(array('sql' => $sql->get()));
+    if(!$rs->get('id')){
+      $rs->set('state_active', 1);
+    }
+    return $rs;
+  }
+  private function db_discussion_state_insert($data){
+    $sql = $this->sql('discussion_state_insert');
+    $sql->setByTag($data);
+    $this->mysql->execute($sql->get());
+    return null;
+  }
+  private function db_discussion_state_set($data){
+    $sql = $this->sql('discussion_state_set');
+    $sql->setByTag($data);
+    $this->mysql->execute($sql->get());
+    return null;
+  }
+  public function setState($tag_place, $tag_item, $tag_owner, $state){
+    /**
+     * 
+     */
+    $data = array('tag_place' => $tag_place, 'tag_item' => $tag_item, 'tag_owner' => $tag_owner, 'state' => $state);
+    /**
+     * 
+     */
+    $temp = $this->db_discussion_state_one($data);
+    if(!$temp->get('id')){
+      $this->db_discussion_state_insert($data);
+    }
+    /**
+     * 
+     */
+    $this->db_discussion_state_set($data);
+    /**
+     * 
+     */
     return null;
   }
   private function discussion_list_tree(){

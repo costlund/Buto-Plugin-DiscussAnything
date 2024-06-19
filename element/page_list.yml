@@ -1,4 +1,27 @@
 -
+  type: div
+  innerHTML:
+    -
+      type: strong
+      attribute:
+        class: content-colon
+      innerHTML: State
+    -
+      type: span
+      settings:
+        enabled: state:state_active
+      innerHTML: Active
+    -
+      type: span
+      settings:
+        enabled: state:state_archived
+      innerHTML: Archived
+    -
+      type: span
+      settings:
+        enabled: state:state_removed
+      innerHTML: Removed
+-
   type: script
   innerHTML: script:script
 -

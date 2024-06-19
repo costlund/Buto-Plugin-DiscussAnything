@@ -113,3 +113,16 @@ readme:
           name: Answer
           description: |
             One could only answer other post if not editable.
+
+    -
+      name: State
+      item:
+        -
+          name: Set state
+          description: |
+            Set state from other plugins.
+            ````
+            wfPlugin::includeonce('discuss/anything');
+            $discuss = new PluginDiscussAnything();
+            $discuss->setState('discuss_proposal', wfRequest::get('id'), wfUser::getSession()->get('plugin/memb_inc/main/active_inc_id'), wfRequest::get('state'));
+            ````

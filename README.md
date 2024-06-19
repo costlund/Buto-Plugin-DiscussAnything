@@ -124,3 +124,18 @@ innerHTML: 'load:/discuss_anything/list?tag_place=discussion_test&amp;tag_item=x
 
 <p>One could only answer other post if not editable.</p>
 
+<a name="key_3"></a>
+
+## State
+
+
+
+<a name="key_3_0"></a>
+
+### Set state
+
+<p>Set state from other plugins.</p>
+<pre><code>wfPlugin::includeonce('discuss/anything');
+$discuss = new PluginDiscussAnything();
+$discuss-&gt;setState('discuss_proposal', wfRequest::get('id'), wfUser::getSession()-&gt;get('plugin/memb_inc/main/active_inc_id'), wfRequest::get('state'));</code></pre>
+
