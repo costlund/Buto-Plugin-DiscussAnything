@@ -288,6 +288,11 @@ class PluginDiscussAnything{
       if(!$v['full_name']){
         $rs[$k]['full_name'] = '(ej kvar)';
       }
+      if(!$rs[$k]['discuss_anything_id']){
+        $rs[$k]['like_result_text'] = '('.$rs[$k]['likes'].'/'.$rs[$k]['dislikes'].')';
+      }else{
+        $rs[$k]['like_result_text'] = '';
+      }
     }
     return $rs;
   }
@@ -391,7 +396,7 @@ class PluginDiscussAnything{
      */
     return null;
   }
-  private function discussion_list_tree(){
+  public function discussion_list_tree(){
     /**
      * Data.
      */

@@ -126,3 +126,18 @@ readme:
             $discuss = new PluginDiscussAnything();
             $discuss->setState('discuss_proposal', wfRequest::get('id'), wfUser::getSession()->get('plugin/memb_inc/main/active_inc_id'), wfRequest::get('state'));
             ````
+    -
+      name: Methods
+      item:
+        -
+          name: discussion_list_tree
+          description: |
+            Get all discussions for an item.
+            ````
+            wfRequest::set('tag_owner', wfUser::getSession()->get('plugin/memb_inc/main/active_inc_id'));
+            wfRequest::set('tag_place', 'discuss_query');
+            wfRequest::set('tag_item', $query->get('id'));
+            wfPlugin::includeonce('discuss/anything');
+            $discuss = new PluginDiscussAnything();
+            $rs = $discuss->discussion_list_tree();
+            ````

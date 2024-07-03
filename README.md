@@ -139,3 +139,21 @@ innerHTML: 'load:/discuss_anything/list?tag_place=discussion_test&amp;tag_item=x
 $discuss = new PluginDiscussAnything();
 $discuss-&gt;setState('discuss_proposal', wfRequest::get('id'), wfUser::getSession()-&gt;get('plugin/memb_inc/main/active_inc_id'), wfRequest::get('state'));</code></pre>
 
+<a name="key_4"></a>
+
+## Methods
+
+
+
+<a name="key_4_0"></a>
+
+### discussion_list_tree
+
+<p>Get all discussions for an item.</p>
+<pre><code>wfRequest::set('tag_owner', wfUser::getSession()-&gt;get('plugin/memb_inc/main/active_inc_id'));
+wfRequest::set('tag_place', 'discuss_query');
+wfRequest::set('tag_item', $query-&gt;get('id'));
+wfPlugin::includeonce('discuss/anything');
+$discuss = new PluginDiscussAnything();
+$rs = $discuss-&gt;discussion_list_tree();</code></pre>
+
